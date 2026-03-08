@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Post Venta</title>
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="index.html"><img src="imagenes/CAR.png" alt="logo" height="150" width="200"></a>
+            <a href="nav_seminuevos.html">SEMINUEVOS</a>
+            <a href="nav_vende.html">VENDE TU AUTO</a>
+            <a href="nav_locales.html">LOCALES</a>
+            <a href="nav_postventa.html">POST VENTA</a>
+        </nav>
+        <br>
+        <br>
+    </header>
+
+    <main>
+        <form action="" method="get">
+            <label><h1>Agendar Servicio Técnico</h1></label>
+            <br>
+            <br>
+            <label>Tipo de vehículo</label>
+            <br>
+            <br>
+            <input type="radio" name="auto" required>
+            <label for="auto">Auto</label>
+            <input type="radio" name="camion" required> 
+            <label for="camion">Camión</label>
+            <br>
+            <br>
+            <label>Placa</label>
+            <br>
+            <br>
+            <input type="text" placeholder="AAA-123" required>
+            <br>
+            <br>
+            <label>Año</label>
+            <br>
+            <br>
+            <input type="number" maxlength="4" placeholder="Año" required>
+            <br>
+            <br>
+            <label>Modelo</label>
+            <br>
+            <br>
+            <input type="text" placeholder="Modelo" required>
+            <br>
+            <br>
+            <label>Versión</label>
+            <br>
+            <br>
+            <input type="text" placeholder="Versión" required>
+            <br>
+            <br>
+            <label>Servicio a realizar</label>
+            <br>
+            <br>
+            <select name="servicio" required>
+                <option value="" disabled selected>Seleccionar</option>
+                <option value="1">Primera inspección</option>
+                <option value="2">Correctivo</option>
+                <option value="3">Pintura</option>
+            </select>
+            <br>
+            <br>
+            <label>Local</label>
+            <br>
+            <br>
+            <select name="Local" required>
+                <option value="" selected disabled>Seleccionar</option>
+                <option value="opcion1">San Isidro</option>
+                <option value="opcion2">Chorrillos</option>
+                <option value="opcion3">Miraflores</option>
+            </select>
+            <br>
+            <br>
+            <label>Fecha y Hora</label>
+            <br>
+            <br>
+            <input type="date" required>
+            <input type="time" required>
+            <br>
+            <br>
+            <input type="submit">
+        </form>
+    </main>
+
+    <footer>
+        <picture>
+            <img src="imagenes/CAR.png" alt="logo" height="100" width="100">
+        </picture>
+        
+        <h2>CarVende</h2>
+        <ul>
+            <li><a href="footer_nosotros.html">Sobre Nosotros</a></li>
+            <li><a href="footer_terminos.html">Términos y Condiciones</a></li>
+        </ul>
+        <h2>Contáctanos</h2>
+        <ul>
+            <li><a href="footer_contactos.html">Contacto</a></li>
+            <li><a href="footer_consultas.html">Consultas</a></li>
+            <li><a href="nav_locales.html">Locales</a></li>
+        </ul>
+
+        <picture>
+            <img src="imagenes/facebook.png" alt="facebook" height="25" width="25">
+        </picture>
+        <picture>
+            <img src="imagenes/instagram.png" alt="instagram" height="25" width="25">
+        </picture>
+        <picture>
+            <img src="imagenes/tiktok.png" alt="tiktok" height="25" width="25">
+        </picture>
+        <picture>
+            <img src="imagenes/youtube.png" alt="youtube" height="25" width="25">
+        </picture>
+        <picture>
+            <img src="imagenes/linkdn.png" alt="linkdn" height="25" width="25">
+        </picture>
+        <br>
+        <picture>
+            <img src="imagenes/reclamaciones.b5bcda5.png" alt="libro de reclamaciones" height="150" width="250">
+        </picture>
+        <p>2026 CarVende - Todos los derechos reservados</p>
+    </footer>
+</body>
+</html>

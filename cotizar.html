@@ -9,15 +9,15 @@
     <header>
         <nav>
             <a href="index.html"><img src="imagenes/CAR.png" alt="logo" height="150" width="200"></a>
-            <a href="SEMINUEVOS.html">SEMINUEVOS</a>
-            <a href="NUEVO.html">AUTOS NUEVOS</a>
-            <a href="VENDE.html">VENDE TU AUTO</a>
-            <a href="LOCALES.html">LOCALES</a>
-            <a href="POSTVENTA.html">POST VENTA</a>
+            <a href="nav_seminuevos.html">SEMINUEVOS</a>
+            <a href="nav_vende.html">VENDE TU AUTO</a>
+            <a href="nav_locales.html">LOCALES</a>
+            <a href="nav_postventa.html">POST VENTA</a>
         </nav>
         <br>
         <br>
     </header>
+    
     <main>
         <form action="" method="get">
         <label>
@@ -58,10 +58,10 @@
         <input type="number" name="celular" maxlength="9" placeholder="Celular" required>
         <br>
         <br>
-        <label>Tienda</label>
+        <label>Local</label>
         <br>
         <br>
-        <select name="tienda" required>
+        <select name="Local" required>
             <option value="" selected disabled>Seleccionar</option>
             <option value="opcion1">San Isidro</option>
             <option value="opcion2">Chorrillos</option>
@@ -69,25 +69,16 @@
         </select>
         <br>
         <br>
-        <label>Modelo</label>
+        <input type="checkbox" name="pago">
+        <label for="pago">Quiero dejar mi auto en parte de pago</label>
         <br>
         <br>
-        <select name="modelo" required>
-            <option value="" selected disabled>Seleccionar</option>
-            <option value="opcion1">HYUNDAI</option>
-            <option value="opcion2">KIA</option>
-            <option value="opcion3">TOYOTA</option>
-        </select>
+        <input type="checkbox" name="financiamiento">
+        <label for="financiamiento">Quiero financiamiento</label>
         <br>
         <br>
-        <label>¿Desea financiamiento?</label>
-        <br>
-        <br>
-        <select name="modelo" required>
-    <option value="" selected disabled>Seleccionar</option>
-    <option value="opcion1">Sí</option>
-    <option value="opcion2">No</option>
-        </select>
+        <input type="checkbox" name="terminos" required>
+        <label for="terminos">He leído y acepto los <u>término y condiciones</u><br>de las políticas de privacidad vigentes</label>
         <br>
         <br>
         <input type="submit">
@@ -101,14 +92,14 @@
         
         <h2>CarVende</h2>
         <ul>
-            <li><a href="NOSOTROS.html">Sobre Nosotros</a></li>
-            <li><a href="TERMyCONDICIONES.html">Términos y Condiciones</a></li>
+            <li><a href="footer_nosotros.html">Sobre Nosotros</a></li>
+            <li><a href="footer_terminos.html">Términos y Condiciones</a></li>
         </ul>
         <h2>Contáctanos</h2>
         <ul>
-            <li><a href="CONTACTOS.html">Contacto</a></li>
-            <li><a href="CONTACTOS.html">Consultas</a></li>
-            <li><a href="LOCALES.html">Locales</a></li>
+            <li><a href="footer_contactos.html">Contacto</a></li>
+            <li><a href="footer_consultas.html">Consultas</a></li>
+            <li><a href="nav_locales.html">Locales</a></li>
         </ul>
 
         <picture>
