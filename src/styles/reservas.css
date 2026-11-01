@@ -1,0 +1,171 @@
+/* ---------- Calendario ---------- */
+.calendario { background: var(--papel); border: 1px solid var(--borde); border-radius: var(--radio-l); padding: 14px 14px 16px; }
+.calendario__cabecera { display: grid; grid-template-columns: 28px 1fr 28px; align-items: center; margin-bottom: 8px; }
+.calendario__titulo { text-align: center; font-size: 15px; font-weight: 600; font-family: var(--fuente-texto); }
+.calendario__nav { border: 0; background: none; font-size: 18px; line-height: 1; width: 28px; height: 28px; border-radius: 6px; color: var(--texto); }
+.calendario__nav:hover { background: var(--verde-claro); }
+.calendario__tabla { width: 100%; border-collapse: collapse; table-layout: fixed; }
+.calendario__tabla th { font-size: 12px; font-weight: 400; color: var(--texto-suave); padding: 8px 0 10px; }
+.calendario__tabla td { text-align: center; padding: 5px 0; }
+.calendario__dia {
+  width: 32px; height: 28px; border: 0; border-radius: 6px; background: none; font-size: 13px; font-variant-numeric: tabular-nums;
+  transition: background .12s;
+}
+.calendario__dia:hover { background: var(--verde-claro); }
+.calendario__dia--con-reservas { text-decoration: underline; text-decoration-color: var(--verde); text-underline-offset: 4px; text-decoration-thickness: 2px; }
+.calendario__dia--activo, .calendario__dia--activo:hover { background: var(--verde); color: #fff; font-weight: 600; }
+.calendario__seleccion { font-size: 13px; margin-top: 8px; padding: 0 2px; }
+.calendario--amplio { padding: 14px 14px 20px; }
+.calendario--amplio .calendario__dia { width: 104px; max-width: 100%; }
+.calendario--amplio .calendario__titulo { font-size: 15px; }
+
+/* ---------- Agenda ---------- */
+.agenda { background: var(--papel); border: 1px solid var(--borde); border-radius: var(--radio-l); padding: 24px; }
+.agenda--sombra { box-shadow: var(--sombra-tarjeta); }
+.agenda__titulo { font-size: 20px; margin-bottom: 16px; }
+.agenda__fila { display: grid; grid-template-columns: 56px 1fr; gap: 8px; padding: 14px 0; border-bottom: 1px solid var(--borde); align-items: start; }
+.agenda__hora { font-size: 13px; font-weight: 700; padding-top: 1px; }
+.agenda__mesa { font-size: 13px; font-weight: 700; }
+.agenda__detalle { font-size: 13px; color: var(--texto-suave); margin-top: 2px; }
+.agenda__fila--conflicto .agenda__hora, .agenda__fila--conflicto .agenda__detalle { color: var(--rojo); }
+.agenda__vacia { font-size: 13px; color: var(--texto-suave); padding: 8px 0; }
+.agenda__dia { font-size: 13px; font-weight: 700; margin: 16px 0 0; text-transform: capitalize; }
+
+/* ---------- Tabla de reservas ---------- */
+.tabla-reservas { background: var(--papel); border: 1px solid var(--borde); border-radius: var(--radio-l); overflow: hidden; }
+.tabla-reservas table { width: 100%; border-collapse: collapse; }
+.tabla-reservas th { background: var(--arena); text-align: left; font-size: 12px; font-weight: 600; color: var(--texto-suave); padding: 14px 16px; }
+.tabla-reservas td { padding: 0 16px; height: 77px; font-size: 13px; border-top: 1px solid var(--borde); }
+.tabla-reservas tr.fila--resaltada td { background: var(--verde-claro); }
+.tabla-reservas tr.fila--cancelada td:not(.celda-estado):not(.celda-accion) { opacity: .7; }
+.tabla-reservas .tabla__hora { font-weight: 700; }
+.tabla-reservas .tabla__cliente { font-size: 14px; }
+.tabla-reservas .tabla__codigo { display: block; font-size: 11px; color: var(--texto-suave); margin-top: 2px; }
+.tabla-reservas .accion { font-size: 12px; font-weight: 700; color: var(--texto); text-decoration: none; display: inline-flex; align-items: center; gap: 4px; background: none; border: 0; padding: 0; }
+.tabla-reservas .accion:hover { color: var(--verde); text-decoration: underline; }
+.tabla-vacia { padding: 32px 16px; text-align: center; font-size: 14px; color: var(--texto-suave); }
+.tarjetas-reservas { display: none; flex-direction: column; gap: 12px; }
+.tarjeta-reserva { background: var(--papel); border: 1px solid var(--borde); border-radius: var(--radio-l); padding: 20px; display: flex; flex-direction: column; gap: 8px; }
+.tarjeta-reserva__cabecera { display: flex; justify-content: space-between; align-items: center; }
+.tarjeta-reserva__hora { font-size: 22px; font-weight: 600; }
+.tarjeta-reserva__cliente { font-size: 15px; font-weight: 600; margin-top: 4px; }
+.tarjeta-reserva__codigo { font-size: 11px; color: var(--texto-suave); }
+.tarjeta-reserva__datos { font-size: 14px; color: var(--texto-suave); margin-top: 6px; }
+.tarjeta-reserva__accion { margin-top: 8px; font-size: 13px; }
+
+/* ---------- Resumen "Tu reserva" ---------- */
+.resumen { display: flex; flex-direction: column; gap: 14px; }
+.resumen__titulo { font-size: 20px; }
+.resumen__restaurante { display: flex; align-items: center; gap: 10px; font-size: 14px; font-weight: 500; color: var(--verde); }
+.resumen__dato dt { font-size: 11px; color: var(--texto-suave); }
+.resumen__dato dd { margin: 3px 0 0; font-size: 15px; }
+.resumen dl { margin: 0; display: flex; flex-direction: column; gap: 14px; }
+
+/* ---------- Franjas horarias ---------- */
+.franjas { display: flex; flex-direction: column; gap: 12px; }
+.franja {
+  display: flex; align-items: center; justify-content: space-between; gap: 12px; width: 100%;
+  min-height: 48px; padding: 0 16px; border-radius: var(--radio-s); border: 1px solid var(--borde-campo);
+  background: var(--papel); text-align: left; transition: border-color .15s, background .15s, transform .1s;
+}
+.franja:hover:not(:disabled) { border-color: var(--verde); }
+.franja__hora { font-size: 18px; font-weight: 600; font-variant-numeric: tabular-nums; }
+.franja__estado { font-size: 12px; color: var(--texto-suave); display: inline-flex; align-items: center; gap: 4px; }
+.franja--agotada { background: var(--rojo-claro); border-color: var(--rojo); }
+.franja--agotada .franja__hora, .franja--agotada .franja__estado { color: var(--rojo); }
+.franja--agotada .franja__estado { font-weight: 500; }
+.franja--seleccionada { background: var(--verde); border-color: var(--verde); }
+.franja--seleccionada .franja__hora, .franja--seleccionada .franja__estado { color: #fff; }
+.franja--seleccionada .franja__estado { font-weight: 500; }
+.franja--compacta { min-height: 48px; }
+.franja--compacta .franja__hora { font-size: 16px; }
+.titulo-seccion { font-size: 20px; }
+
+/* ---------- Formularios ---------- */
+.formulario { display: flex; flex-direction: column; gap: 18px; }
+.formulario__obligatorios { font-size: 13px; color: var(--texto-suave); }
+.formulario__fila { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.formulario__alternativa { background: var(--verde-claro); border-radius: var(--radio-s); padding: 16px; display: flex; flex-direction: column; gap: 12px; font-size: 14px; }
+.formulario__alternativa small { font-size: 12px; color: var(--texto-suave); }
+.formulario__alternativa .btn { background: var(--papel); }
+.formulario__acciones { display: flex; flex-direction: column; gap: 14px; }
+.formulario__modos { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+
+/* ---------- Edición y cancelación ---------- */
+.edicion { background: var(--papel); border: 1px solid var(--borde); border-radius: var(--radio-l); padding: 24px; display: flex; flex-direction: column; gap: 20px; }
+.edicion__cabecera { display: flex; justify-content: space-between; align-items: center; }
+.edicion__cabecera h2 { font-size: 22px; }
+.edicion__cerrar { border: 0; background: none; padding: 6px; border-radius: 8px; color: var(--texto-suave); display: grid; place-items: center; }
+.edicion__cerrar:hover { background: var(--crema); color: var(--texto); }
+.edicion__codigo { display: flex; align-items: center; gap: 12px; font-weight: 700; font-size: 16px; }
+.cancelacion { border: 1px solid var(--rojo); background: var(--rojo-claro); border-radius: var(--radio-s); padding: 16px; display: flex; flex-direction: column; gap: 16px; }
+.cancelacion h3 { font-family: var(--fuente-texto); font-size: 14px; font-weight: 700; color: var(--rojo); letter-spacing: 0; }
+.cancelacion .btn:not(.btn--peligro) { background: var(--papel); }
+.cancelacion__pregunta { font-size: 16px; font-weight: 700; font-family: var(--fuente-texto); letter-spacing: 0; }
+.cancelacion__pie { font-size: 12px; color: var(--texto-suave); }
+.estado-posterior { background: var(--papel); border: 1px solid var(--borde); border-radius: var(--radio-l); padding: 24px; display: flex; flex-direction: column; gap: 16px; }
+.estado-posterior__dato { font-size: 13px; color: var(--texto-suave); }
+.estado-posterior__linea { font-size: 16px; }
+
+/* ---------- Tarjeta de confirmación ---------- */
+.confirmacion { background: var(--verde); color: #fff; border-radius: var(--radio-l); padding: 40px 24px; text-align: center; display: flex; flex-direction: column; align-items: center; gap: 12px; }
+.confirmacion__etiqueta { font-size: 12px; font-weight: 700; letter-spacing: .02em; text-transform: uppercase; }
+.confirmacion__sub { font-size: 13px; }
+.confirmacion__codigo { font-family: var(--fuente-titulo); font-size: 64px; line-height: 1.1; letter-spacing: 0; margin: 8px 0; }
+
+/* ---------- Pantallas del panel ---------- */
+.panel__indicadores { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+.panel__acciones { display: flex; flex-direction: column; gap: 14px; }
+.panel__acciones h2, .seccion h2 { font-size: 20px; }
+.panel__botones { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; }
+.panel__botones .btn { min-height: 48px; }
+.panel__cuerpo { display: grid; grid-template-columns: 280px minmax(0, 1fr); gap: 24px; align-items: start; }
+.panel__lateral { display: flex; flex-direction: column; gap: 24px; }
+.seccion { display: flex; flex-direction: column; gap: 16px; min-width: 0; }
+.seccion__titulo { font-size: 22px; }
+.enlace-volver { display: inline-flex; align-items: center; gap: 6px; font-size: 14px; font-weight: 600; color: var(--verde); text-decoration: none; background: none; border: 0; padding: 0; align-self: flex-start; }
+.enlace-volver:hover { text-decoration: underline; }
+
+.consulta__controles { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 16px 16px; align-items: start; }
+.consulta__acciones { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.consulta__acciones .btn--primario { grid-column: 1 / -1; }
+.consulta__cuerpo { display: grid; grid-template-columns: 280px minmax(0, 1fr); gap: 24px; align-items: start; }
+.filtros { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+.filtros .chip { min-height: 40px; }
+.filtros-nota { font-size: 13px; color: var(--texto-suave); }
+
+.alta { display: grid; grid-template-columns: minmax(0, 1fr) 300px; gap: 24px; align-items: start; }
+.alta__lateral { display: flex; flex-direction: column; gap: 24px; }
+.alta__validacion { display: flex; gap: 10px; font-size: 13px; color: var(--texto-suave); padding: 0 4px; }
+.alta__validacion strong { display: block; color: var(--verde); font-size: 14px; margin-bottom: 4px; }
+.alta__validacion .icono { color: var(--verde); margin-top: 1px; }
+
+.editar { display: grid; grid-template-columns: 280px minmax(0, 1fr); gap: 24px; align-items: start; }
+.editar__lateral { display: flex; flex-direction: column; gap: 24px; }
+.editar__nota { font-size: 13px; color: var(--texto-suave); }
+.posteriores { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+
+@media (max-width: 1100px) {
+  .panel__cuerpo, .consulta__cuerpo, .editar { grid-template-columns: 250px minmax(0, 1fr); }
+  .alta { grid-template-columns: minmax(0, 1fr) 270px; }
+}
+
+@media (max-width: 860px) {
+  .panel__indicadores { gap: 8px; }
+  .indicador { padding: 12px; gap: 8px; border-radius: 12px; }
+  .indicador__etiqueta { font-size: 11px; }
+  .indicador__valor { font-size: 28px; }
+  .indicador__nota { font-size: 10px; }
+  .panel__botones { grid-template-columns: 1fr; gap: 12px; }
+  .panel__cuerpo, .consulta__cuerpo, .editar, .alta { grid-template-columns: 1fr; }
+  .consulta__controles { grid-template-columns: 1fr; }
+  .tabla-reservas { display: none; }
+  .tarjetas-reservas { display: flex; }
+  .formulario__fila { grid-template-columns: 1fr; }
+  .posteriores { grid-template-columns: 1fr; }
+  .agenda { padding: 20px; }
+  .edicion { padding: 20px; }
+  .confirmacion__codigo { font-size: 52px; }
+  .filtros { grid-template-columns: 1fr; }
+  .tarjeta { padding: 20px; }
+}

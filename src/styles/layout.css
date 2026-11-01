@@ -1,0 +1,89 @@
+.logo { display: inline-flex; align-items: center; gap: 10px; font-family: var(--fuente-titulo); font-size: 26px; color: var(--verde); text-decoration: none; }
+.logo .icono { color: var(--verde); }
+
+.encabezado {
+  display: flex; align-items: center; justify-content: space-between;
+  min-height: 106px; padding: 0 40px; background: var(--papel); border-bottom: 1px solid var(--borde);
+}
+.encabezado__insignia {
+  padding: 4px 10px; border-radius: 999px; background: var(--verde-claro);
+  font-size: 12px; font-weight: 700; color: var(--verde);
+}
+.encabezado__ayuda { display: inline-flex; align-items: center; gap: 6px; font-size: 14px; color: var(--verde); text-decoration: none; }
+.encabezado__ayuda:hover { text-decoration: underline; }
+
+/* ---------- Administración ---------- */
+.admin { min-height: 100vh; display: flex; flex-direction: column; }
+.admin__cuerpo { flex: 1; display: grid; grid-template-columns: 200px minmax(0, 1fr); }
+.admin__principal { padding: 32px; min-width: 0; display: flex; flex-direction: column; gap: 24px; }
+.admin__cabecera { display: flex; flex-direction: column; gap: 6px; }
+.admin__cabecera h1 { font-size: 36px; line-height: 1.15; margin-top: 6px; }
+.admin__cabecera p:not(.eyebrow) { font-size: 15px; color: var(--texto-suave); }
+
+.nav-lateral {
+  background: var(--papel); border-right: 1px solid var(--borde);
+  padding: 32px 16px; display: flex; flex-direction: column; gap: 4px;
+}
+.nav-lateral__seccion { font-size: 11px; letter-spacing: .03em; text-transform: uppercase; color: var(--texto-suave); margin-bottom: 8px; }
+.nav-lateral__lista { display: flex; flex-direction: column; gap: 12px; }
+.nav-lateral__enlace {
+  display: flex; align-items: center; gap: 10px; height: 46px; padding: 0 12px; white-space: nowrap;
+  border-radius: var(--radio-s); font-size: 13px; color: var(--texto-suave); text-decoration: none;
+  transition: background .15s, color .15s;
+}
+.nav-lateral__enlace:hover { background: rgba(234,240,227,.6); color: var(--verde); }
+.nav-lateral__enlace--activo { background: var(--verde-claro); color: var(--verde); font-weight: 600; }
+.nav-lateral__turno { margin: 28px 12px 0; font-size: 13px; color: var(--texto-suave); display: flex; flex-direction: column; gap: 8px; }
+.nav-lateral__reiniciar { margin: 24px 12px 0; padding: 0; border: 0; background: none; font-size: 12px; color: var(--texto-suave); text-align: left; text-decoration: underline; }
+.nav-lateral__reiniciar:hover { color: var(--verde); }
+
+.nav-compacta { display: none; }
+
+/* ---------- Cliente ---------- */
+.cliente { min-height: 100vh; display: flex; flex-direction: column; }
+.cliente__principal { flex: 1; width: 100%; max-width: 1280px; margin: 0 auto; padding: 56px 56px 72px; display: flex; flex-direction: column; gap: 32px; }
+.cliente__intro { display: flex; flex-direction: column; gap: 10px; }
+.cliente__intro h1 { font-size: 42px; line-height: 1.15; }
+.cliente__intro--hero h1 { font-size: 52px; }
+.cliente__intro p:not(.eyebrow) { font-size: 15px; color: var(--texto-suave); }
+.pie { border-top: 1px solid var(--borde); padding: 24px 56px; display: flex; justify-content: space-between; gap: 16px; font-size: 13px; color: var(--texto-suave); }
+.pie--ancho { max-width: none; }
+.rejilla-cliente { display: grid; grid-template-columns: minmax(0, 1fr) 344px; gap: 40px; align-items: start; }
+.rejilla-cliente--hero { grid-template-columns: minmax(0, 1fr) 420px; }
+.rejilla-cliente--fecha { grid-template-columns: minmax(0, 1fr) 344px; }
+.columna { display: flex; flex-direction: column; gap: 24px; min-width: 0; }
+.bloque-restaurante { display: flex; flex-direction: column; gap: 10px; }
+.bloque-restaurante h2 { font-size: 24px; }
+.bloque-restaurante p { font-size: 15px; color: var(--texto-suave); }
+.bloque-restaurante .dato { display: flex; align-items: center; gap: 10px; font-size: 13px; }
+.bloque-restaurante .dato .icono { color: var(--verde); }
+.bloque-restaurante small { font-size: 13px; color: var(--texto-suave); }
+
+@media (max-width: 1100px) {
+  .admin__cuerpo { grid-template-columns: 180px minmax(0, 1fr); }
+  .admin__principal { padding: 28px 24px; }
+}
+
+@media (max-width: 860px) {
+  .encabezado { min-height: 68px; padding: 0 20px; }
+  .logo { font-size: 22px; }
+  .admin__cuerpo { grid-template-columns: 1fr; }
+  .nav-lateral { display: none; }
+  .nav-compacta {
+    display: grid; grid-template-columns: repeat(3, 1fr); align-items: center;
+    background: var(--papel); border-bottom: 1px solid var(--borde); padding: 0 20px;
+  }
+  .nav-compacta a { padding: 14px 0; font-size: 13px; color: var(--texto-suave); text-decoration: none; text-align: center; }
+  .nav-compacta a:first-child { text-align: left; }
+  .nav-compacta a:last-child { text-align: right; }
+  .nav-compacta a.activo { color: var(--texto); font-weight: 700; }
+  .admin__principal { padding: 24px 20px 40px; }
+  .admin__cabecera h1 { font-size: 32px; }
+
+  .cliente__principal { padding: 24px 20px 48px; gap: 24px; }
+  .cliente__intro h1, .cliente__intro--hero h1 { font-size: 34px; }
+  .rejilla-cliente, .rejilla-cliente--hero, .rejilla-cliente--fecha { grid-template-columns: 1fr; gap: 24px; }
+  .stepper { gap: 8px; }
+  .stepper__paso { font-size: 11px; }
+  .pie { padding: 20px; flex-direction: column; gap: 6px; }
+}

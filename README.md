@@ -5,7 +5,7 @@ Aplicación en **React** para gestionar reservas de mesa en un restaurante. Repl
 Proyecto de la evaluación parcial de *Desarrollo de Interfaces 2* (IDAT).
 
 - Prototipo en Figma: https://www.figma.com/design/R2WWWpLcZddBeOmvRlIu25/Sobremesa
-- Integrantes: Alvaro Díaz, Alonso Hernández, Angela Jimenez
+- Integrantes: _(completar con los tres nombres del equipo)_
 
 ## Requisitos
 
@@ -103,4 +103,5 @@ src/
 
 ## Notas
 
+- La fotografía del restaurante no se pudo extraer de Figma. Copia `restaurante.jpg` en `public/img/` (ver `LEEME.txt`) y se mostrará sola.
 - Los valores de las reservas de demo reproducen los indicadores del diseño (25 reservas, 8/12 mesas, 28 personas, 12 plazas libres).

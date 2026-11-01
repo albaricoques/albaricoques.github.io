@@ -1,0 +1,27 @@
+/* Tokens de diseño extraídos del prototipo de Figma "Sobremesa" */
+:root {
+  --verde: #394c32;
+  --verde-hover: #2f3f29;
+  --verde-claro: #eaf0e3;
+  --crema: #f3f0e8;
+  --papel: #fffefa;
+  --arena: #e7e1d4;
+  --rojo: #a54c37;
+  --rojo-claro: #f8ece5;
+  --deshabilitado: #e1e3db;
+  --deshabilitado-texto: #7a7f72;
+  --pista: #dcddd2;
+  --borde: #e3dfd2;
+  --borde-campo: #d9d5c8;
+  --texto: #24291f;
+  --texto-suave: #6a6e62;
+
+  --fuente-titulo: 'Lora Variable', 'Lora', Georgia, serif;
+  --fuente-texto: 'Inter Variable', 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+
+  --radio-s: 8px;
+  --radio-m: 12px;
+  --radio-l: 16px;
+  --sombra-tarjeta: 0 8px 24px rgba(57, 76, 50, 0.06);
+  --altura-control: 44px;
+}

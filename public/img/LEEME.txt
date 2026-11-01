@@ -1,0 +1,5 @@
+Coloca aquí la fotografía del restaurante exportada desde Figma con el nombre:
+
+    restaurante.jpg
+
+Si el archivo no existe, la app muestra la "Imagen esquemática" del sistema de wireframes.
