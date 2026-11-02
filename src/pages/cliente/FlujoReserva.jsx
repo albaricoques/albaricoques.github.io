@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import LayoutCliente from '../../components/layout/LayoutCliente.jsx'
 import Boton from '../../components/ui/Boton.jsx'
 import Campo from '../../components/ui/Campo.jsx'
@@ -21,16 +21,25 @@ import { diasDelMes, fechaCorta, fechaLarga, diaDeMes, fechaSeleccionada } from 
 const IMAGEN = '/img/restaurante.jpg'
 const OPCIONES_FECHA = diasDelMes(2026, 9).map((d) => ({ valor: d, texto: fechaCorta(d) }))
 const OPCIONES_HORA = HORAS_CLIENTE.map((h) => ({ valor: h, texto: `${h} h` }))
+const RUTA_A_PASO = {
+  '/': 'inicio', '/reservar': 'inicio', '/reservar/fecha': 'fecha', '/reservar/alternativas': 'alternativas',
+  '/reservar/personas': 'personas', '/reservar/datos': 'datos', '/reservar/resumen': 'resumen', '/reservar/listo': 'listo',
+}
+const DATOS_INICIALES = { fecha: FECHA_DEMO, hora: '20:00', personas: 4, nombre: '', telefono: '+34 ', correo: '', notas: '' }
+/** Cada paso tiene su propia URL, así que el botón Atrás del navegador retrocede de paso */
+const irA = (p, reemplazar = false) => {
+  const destino = p === 'inicio' ? '#/' : `#/reservar/${p}`
+  if (reemplazar) window.location.replace(destino)
+  else window.location.hash = destino.slice(1)
+}
 const PASO_STEPPER = { inicio: 0, fecha: 0, alternativas: 0, personas: 1, datos: 2, resumen: 3, listo: 4 }
 const mayus = (t) => t.replace(/^./, (c) => c.toUpperCase())
 
-export default function FlujoReserva() {
+export default function FlujoReserva({ ruta = '/' }) {
   const { reservas, bloqueos, crearReserva } = useReservas()
-  const [paso, setPaso] = useState('inicio')
-  const [datos, setDatos] = useState({
-    fecha: FECHA_DEMO, hora: '20:00', personas: 4,
-    nombre: '', telefono: '+34 ', correo: '', notas: '',
-  })
+  const pasoRuta = RUTA_A_PASO[ruta] ?? 'inicio'
+  const [datos, setDatos] = useState(DATOS_INICIALES)
+  const recienConfirmada = useRef(false)
   const [tocados, setTocados] = useState({})
   const [confirmada, setConfirmada] = useState(null)
   const [errorFinal, setErrorFinal] = useState(null)
@@ -45,9 +54,13 @@ export default function FlujoReserva() {
   useEffect(() => {
     window.scrollTo({ top: 0 })
     setMensajeCompartir('')
-  }, [paso])
+  }, [pasoRuta])
 
-  const ir = (p) => { setErrorFinal(null); setPaso(p) }
+  const ir = (p) => { setErrorFinal(null); irA(p) }
+  const reiniciar = () => {
+    setDatos(DATOS_INICIALES); setTocados({}); setConfirmada(null); setErrorFinal(null)
+    irA('inicio')
+  }
 
   const alternativas = useMemo(
     () => HORAS_CLIENTE.filter((h) => h !== datos.hora && cupoOnline({ reservas, fecha: datos.fecha, hora: h }) > 0),
@@ -63,6 +76,19 @@ export default function FlujoReserva() {
     correo: validarCorreo(datos.correo) ? null : 'Introduce un correo válido, como nombre@dominio.com.',
   }
   const datosValidos = !errores.nombre && !errores.telefono && !errores.correo
+
+  // Si alguien entra por URL a un paso sin tener lo anterior, se le lleva al paso que falta
+  let paso = pasoRuta
+  if (paso === 'listo' && !confirmada) paso = 'inicio'
+  if (paso === 'resumen' && !datosValidos) paso = 'datos'
+
+  // useEffect: mantiene la URL coherente y evita duplicar una reserva ya confirmada al volver atrás
+  useEffect(() => {
+    if (pasoRuta === 'listo') recienConfirmada.current = false
+    else if (confirmada && !recienConfirmada.current) { reiniciar(); return }
+    if (paso !== pasoRuta) irA(paso, true)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [pasoRuta, paso, confirmada])
   const tocar = (c) => () => setTocados((t) => ({ ...t, [c]: true }))
   const errorDe = (c) => (tocados[c] ? errores[c] : null)
 
@@ -71,15 +97,16 @@ export default function FlujoReserva() {
     const mesa = mesaParaGrupo()
     if (agotada(datos.hora) || !mesa) {
       setErrorFinal(`Lo sentimos, a las ${datos.hora} ya no queda mesa para ${datos.personas} personas. Elige otro horario.`)
-      setPaso('fecha')
+      irA('fecha')
       return
     }
     const creada = crearReserva({
       fecha: datos.fecha, hora: datos.hora, personas: datos.personas, mesa, cliente: datos.nombre.trim(),
       telefono: datos.telefono, correo: datos.correo, notas: datos.notas, origen: 'web', estado: 'confirmada',
     })
+    recienConfirmada.current = true
     setConfirmada(creada)
-    setPaso('listo')
+    irA('listo', true)
   }
 
   const guardarCalendario = () => {
@@ -136,7 +163,7 @@ export default function FlujoReserva() {
       <LayoutCliente {...propsPaso} titulo="Elige fecha y hora"
         descripcion={`${mayus(fechaLarga(datos.fecha))}. Consultamos el cupo antes de pedir tus datos.`}>
         {errorFinal && <Aviso tipo="error" titulo="Horario no disponible">{errorFinal}</Aviso>}
-        <div className="rejilla-cliente rejilla-cliente--fecha" style={{ gridTemplateColumns: 'minmax(0,1fr) 344px' }}>
+        <div className="rejilla-cliente rejilla-cliente--fecha">
           <div className="columna" style={{ gap: 16 }}>
             <h2 className="titulo-seccion">Fecha</h2>
             <Calendario amplio fecha={datos.fecha} onSeleccionar={(d) => poner('fecha', d)} />
@@ -210,7 +237,9 @@ export default function FlujoReserva() {
             </Tarjeta>
             {mesa ? (
               <Aviso tipo="exito" titulo={`${datos.personas} persona${datos.personas === 1 ? '' : 's'} · Cupo disponible`}>
-                Puedes reservar hasta {RESTAURANTE.maxPersonas} personas. En el límite, el botón + se deshabilita.
+                {mesa.includes('+')
+                  ? `Unimos dos mesas contiguas para tu grupo. Puedes reservar hasta ${RESTAURANTE.maxPersonas} personas.`
+                  : `Puedes reservar hasta ${RESTAURANTE.maxPersonas} personas. En el límite, el botón + se deshabilita.`}
               </Aviso>
             ) : (
               <Aviso tipo="error" titulo={`Sin mesa para ${datos.personas} personas`}>
@@ -303,6 +332,7 @@ export default function FlujoReserva() {
           <p className="muted" style={{ fontSize: 12 }}>
             Confirmación enviada a {confirmada.correo}. Para modificar o cancelar, llama al {RESTAURANTE.telefono} e indica tu código.
           </p>
+          <button type="button" className="btn btn--enlace" onClick={reiniciar} style={{ alignSelf: 'flex-start' }}>Hacer otra reserva</button>
           <InfoRestaurante />
         </div>
         <ResumenReserva {...confirmada} completo />

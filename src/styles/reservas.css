@@ -169,3 +169,19 @@
   .filtros { grid-template-columns: 1fr; }
   .tarjeta { padding: 20px; }
 }
+
+.formulario__motivo { font-size: 13px; color: var(--texto-suave); text-align: center; }
+.editar__selector { max-width: 520px; }
+
+/* Objetivos táctiles de al menos 44 px en móvil */
+@media (max-width: 860px) {
+  .calendario__nav { width: 44px; height: 44px; font-size: 22px; }
+  .calendario__cabecera { grid-template-columns: 44px 1fr 44px; }
+  .calendario__dia, .calendario--amplio .calendario__dia { width: 100%; min-height: 44px; }
+  .calendario__tabla td { padding: 2px 0; }
+  .filtros .chip { min-height: 44px; }
+  .enlace-volver, .tarjeta-reserva__accion { min-height: 44px; display: inline-flex; align-items: center; }
+  .edicion__cerrar { width: 44px; height: 44px; }
+  .btn--enlace { min-height: 44px; }
+  .accion-edicion .btn--enlace { padding: 0 4px; }
+}

@@ -17,6 +17,9 @@ export const MESAS = [
   { id: 'M10', capacidad: 4 }, { id: 'M11', capacidad: 4 }, { id: 'M12', capacidad: 2 },
 ]
 
+/** Pares de mesas contiguas que se pueden unir para grupos de 5 a 8 personas */
+export const COMBINACIONES = [['M04', 'M05'], ['M06', 'M07'], ['M08', 'M09'], ['M10', 'M11']]
+
 /** Franjas horarias del servicio. El cliente solo ve las cuatro primeras. */
 export const HORAS_SERVICIO = ['19:30', '20:00', '20:30', '21:00', '21:30']
 export const HORAS_CLIENTE = HORAS_SERVICIO.slice(0, 4)

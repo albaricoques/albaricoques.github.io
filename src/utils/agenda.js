@@ -38,9 +38,9 @@ export function contarSobrecupos(reservas) {
   reservas
     .filter((r) => r.estado !== 'cancelada')
     .forEach((r) => {
-      const k = `${r.fecha}|${r.hora}|${r.mesa}`
-      if (vistas.has(k)) repetidas++
-      vistas.add(k)
+      const claves = r.mesa.split('+').map((m) => `${r.fecha}|${r.hora}|${m}`)
+      if (claves.some((k) => vistas.has(k))) repetidas++
+      claves.forEach((k) => vistas.add(k))
     })
   return repetidas
 }

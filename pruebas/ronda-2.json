@@ -1,0 +1,647 @@
+{
+  "ronda": "2",
+  "resultados": [
+    {
+      "perfil": "P1 · Cliente que va directo",
+      "tarea": "Reservar mesa para 4 personas el 30 oct. a las 20:00 (agotado) usando una alternativa",
+      "viewport": "1280px",
+      "completada": true,
+      "fallo": null,
+      "clics": 6,
+      "camposEscritos": 3,
+      "pantallas": 7,
+      "notas": [
+        "Ancho del calendario en el paso Fecha: 784 px (viewport 1280 px)",
+        "Aviso de franja agotada visible a la primera"
+      ],
+      "errorConsola": 0,
+      "auditorias": [
+        {
+          "pantalla": "C01 inicio",
+          "desborde": false,
+          "h1": 1,
+          "interactivos": 6,
+          "menorQue44": 3,
+          "menorQue24": 2,
+          "clasesPequenas": {
+            "logo": 1,
+            "encabezado__ayuda": 1,
+            "pie__enlace": 1
+          },
+          "sinEtiqueta": 0
+        },
+        {
+          "pantalla": "C02 fecha y hora",
+          "desborde": false,
+          "h1": 1,
+          "interactivos": 42,
+          "menorQue44": 36,
+          "menorQue24": 2,
+          "clasesPequenas": {
+            "logo": 1,
+            "encabezado__ayuda": 1,
+            "calendario__nav": 2,
+            "calendario__dia": 31,
+            "pie__enlace": 1
+          },
+          "sinEtiqueta": 0
+        },
+        {
+          "pantalla": "C03 alternativas",
+          "desborde": false,
+          "h1": 1,
+          "interactivos": 8,
+          "menorQue44": 3,
+          "menorQue24": 2,
+          "clasesPequenas": {
+            "logo": 1,
+            "encabezado__ayuda": 1,
+            "pie__enlace": 1
+          },
+          "sinEtiqueta": 0
+        },
+        {
+          "pantalla": "C04 personas",
+          "desborde": false,
+          "h1": 1,
+          "interactivos": 7,
+          "menorQue44": 3,
+          "menorQue24": 2,
+          "clasesPequenas": {
+            "logo": 1,
+            "encabezado__ayuda": 1,
+            "pie__enlace": 1
+          },
+          "sinEtiqueta": 0
+        },
+        {
+          "pantalla": "C05 datos",
+          "desborde": false,
+          "h1": 1,
+          "interactivos": 9,
+          "menorQue44": 3,
+          "menorQue24": 2,
+          "clasesPequenas": {
+            "logo": 1,
+            "encabezado__ayuda": 1,
+            "pie__enlace": 1
+          },
+          "sinEtiqueta": 0
+        },
+        {
+          "pantalla": "C06 resumen",
+          "desborde": false,
+          "h1": 1,
+          "interactivos": 7,
+          "menorQue44": 6,
+          "menorQue24": 5,
+          "clasesPequenas": {
+            "logo": 1,
+            "encabezado__ayuda": 1,
+            "btn": 3,
+            "pie__enlace": 1
+          },
+          "sinEtiqueta": 0
+        },
+        {
+          "pantalla": "C07 confirmación",
+          "desborde": false,
+          "h1": 1,
+          "interactivos": 6,
+          "menorQue44": 4,
+          "menorQue24": 3,
+          "clasesPequenas": {
+            "logo": 1,
+            "encabezado__ayuda": 1,
+            "btn": 1,
+            "pie__enlace": 1
+          },
+          "sinEtiqueta": 0
+        }
+      ]
+    },
+    {
+      "perfil": "P2 · Cliente en móvil",
+      "tarea": "Misma reserva desde un teléfono de 390 px",
+      "viewport": "390px",
+      "completada": true,
+      "fallo": null,
+      "clics": 6,
+      "camposEscritos": 3,
+      "pantallas": 7,
+      "notas": [
+        "Ancho del calendario en el paso Fecha: 350 px (viewport 390 px)",
+        "Aviso de franja agotada visible a la primera"
+      ],
+      "errorConsola": 0,
+      "auditorias": [
+        {
+          "pantalla": "C01 inicio",
+          "desborde": false,
+          "h1": 1,
+          "interactivos": 6,
+          "menorQue44": 2,
+          "menorQue24": 1,
+          "clasesPequenas": {
+            "logo": 1,
+            "pie__enlace": 1
+          },
+          "sinEtiqueta": 0
+        },
+        {
+          "pantalla": "C02 fecha y hora",
+          "desborde": false,
+          "h1": 1,
+          "interactivos": 42,
+          "menorQue44": 2,
+          "menorQue24": 1,
+          "clasesPequenas": {
+            "logo": 1,
+            "pie__enlace": 1
+          },
+          "sinEtiqueta": 0
+        },
+        {
+          "pantalla": "C03 alternativas",
+          "desborde": false,
+          "h1": 1,
+          "interactivos": 8,
+          "menorQue44": 2,
+          "menorQue24": 1,
+          "clasesPequenas": {
+            "logo": 1,
+            "pie__enlace": 1
+          },
+          "sinEtiqueta": 0
+        },
+        {
+          "pantalla": "C04 personas",
+          "desborde": false,
+          "h1": 1,
+          "interactivos": 7,
+          "menorQue44": 2,
+          "menorQue24": 1,
+          "clasesPequenas": {
+            "logo": 1,
+            "pie__enlace": 1
+          },
+          "sinEtiqueta": 0
+        },
+        {
+          "pantalla": "C05 datos",
+          "desborde": false,
+          "h1": 1,
+          "interactivos": 9,
+          "menorQue44": 2,
+          "menorQue24": 1,
+          "clasesPequenas": {
+            "logo": 1,
+            "pie__enlace": 1
+          },
+          "sinEtiqueta": 0
+        },
+        {
+          "pantalla": "C06 resumen",
+          "desborde": false,
+          "h1": 1,
+          "interactivos": 7,
+          "menorQue44": 2,
+          "menorQue24": 1,
+          "clasesPequenas": {
+            "logo": 1,
+            "pie__enlace": 1
+          },
+          "sinEtiqueta": 0
+        },
+        {
+          "pantalla": "C07 confirmación",
+          "desborde": false,
+          "h1": 1,
+          "interactivos": 6,
+          "menorQue44": 2,
+          "menorQue24": 1,
+          "clasesPequenas": {
+            "logo": 1,
+            "pie__enlace": 1
+          },
+          "sinEtiqueta": 0
+        }
+      ]
+    },
+    {
+      "perfil": "P3 · Cliente que comete errores",
+      "tarea": "Reservar con un grupo de 8, datos mal escritos, corregir desde el resumen y salir con Atrás",
+      "viewport": "1280px",
+      "completada": true,
+      "fallo": null,
+      "clics": 16,
+      "camposEscritos": 6,
+      "pantallas": 0,
+      "notas": [
+        "Botón \"Continuar · sin cupo\" deshabilitado: true",
+        "Grupo de 8 personas: aviso \"Sin mesa\" = false; botón continuar bloqueado = false",
+        "Atrás del navegador en \"Datos\": vuelve al paso anterior (Personas) = true; se queda en el mismo paso = false; la URL cambia entre pasos = true",
+        "Errores en línea: teléfono = true, correo = true; \"Revisar reserva\" bloqueado = true",
+        "\"Editar datos de contacto\" desde el resumen lleva a los datos = true",
+        "Tras confirmar hay opción de hacer otra reserva = true"
+      ],
+      "errorConsola": 0,
+      "auditorias": []
+    },
+    {
+      "perfil": "P4 · Administrador, alta con conflicto",
+      "tarea": "Registrar una reserva en M04 a las 20:00 (ocupada) y resolver el conflicto",
+      "viewport": "1280px",
+      "completada": true,
+      "fallo": null,
+      "clics": 3,
+      "camposEscritos": 3,
+      "pantallas": 2,
+      "notas": [
+        "Conflicto M04 20:00 detectado al abrir = true",
+        "Texto del botón Guardar con conflicto: \"Guardar reserva · Bloqueado\" (deshabilitado = true)",
+        "Tras aplicar la alternativa aparece \"Disponible · Sin conflictos\" = true",
+        "Con datos vacíos: botón \"Guardar reserva\" deshabilitado = true; el motivo se explica en pantalla = true"
+      ],
+      "errorConsola": 0,
+      "auditorias": [
+        {
+          "pantalla": "A01 panel",
+          "desborde": false,
+          "h1": 1,
+          "interactivos": 49,
+          "menorQue44": 41,
+          "menorQue24": 6,
+          "clasesPequenas": {
+            "logo": 1,
+            "encabezado__ayuda": 1,
+            "nav-lateral__reiniciar": 1,
+            "calendario__nav": 2,
+            "calendario__dia": 31,
+            "accion": 4,
+            "enlace-volver": 1
+          },
+          "sinEtiqueta": 0
+        },
+        {
+          "pantalla": "A03 nueva reserva",
+          "desborde": false,
+          "h1": 1,
+          "interactivos": 53,
+          "menorQue44": 36,
+          "menorQue24": 1,
+          "clasesPequenas": {
+            "logo": 1,
+            "encabezado__ayuda": 1,
+            "nav-lateral__reiniciar": 1,
+            "calendario__nav": 2,
+            "calendario__dia": 31
+          },
+          "sinEtiqueta": 0
+        }
+      ]
+    },
+    {
+      "perfil": "P5 · Administrador, cancelar",
+      "tarea": "Cancelar la reserva de Ana López",
+      "viewport": "1280px",
+      "completada": true,
+      "fallo": null,
+      "clics": 4,
+      "camposEscritos": 0,
+      "pantallas": 2,
+      "notas": [
+        "Al pulsar \"Editar\" en el panel se abre la reserva de Ana López (SM-3043) = false",
+        "Se usó el selector \"Reserva a editar\"",
+        "Reserva cancelada con aviso = true; el botón de cancelar desaparece (evita doble cancelación) = true"
+      ],
+      "errorConsola": 0,
+      "auditorias": [
+        {
+          "pantalla": "A01 panel",
+          "desborde": false,
+          "h1": 1,
+          "interactivos": 49,
+          "menorQue44": 41,
+          "menorQue24": 6,
+          "clasesPequenas": {
+            "logo": 1,
+            "encabezado__ayuda": 1,
+            "nav-lateral__reiniciar": 1,
+            "calendario__nav": 2,
+            "calendario__dia": 31,
+            "accion": 4,
+            "enlace-volver": 1
+          },
+          "sinEtiqueta": 0
+        },
+        {
+          "pantalla": "A04 editar",
+          "desborde": false,
+          "h1": 1,
+          "interactivos": 52,
+          "menorQue44": 37,
+          "menorQue24": 1,
+          "clasesPequenas": {
+            "logo": 1,
+            "encabezado__ayuda": 1,
+            "nav-lateral__reiniciar": 1,
+            "calendario__nav": 2,
+            "calendario__dia": 31,
+            "edicion__cerrar": 1
+          },
+          "sinEtiqueta": 0
+        }
+      ]
+    },
+    {
+      "perfil": "P6 · Administrador, editar con conflicto",
+      "tarea": "Mover la reserva SM-3042 a una hora ocupada y luego a una libre",
+      "viewport": "1280px",
+      "completada": true,
+      "fallo": null,
+      "clics": 3,
+      "camposEscritos": 0,
+      "pantallas": 1,
+      "notas": [
+        "Cambiar a 20:00 (M04 ocupada): conflicto = true, Guardar deshabilitado = true",
+        "Cambiar a 21:00: disponible = true, Guardar habilitado = true"
+      ],
+      "errorConsola": 0,
+      "auditorias": [
+        {
+          "pantalla": "A04 editar",
+          "desborde": false,
+          "h1": 1,
+          "interactivos": 52,
+          "menorQue44": 37,
+          "menorQue24": 1,
+          "clasesPequenas": {
+            "logo": 1,
+            "encabezado__ayuda": 1,
+            "nav-lateral__reiniciar": 1,
+            "calendario__nav": 2,
+            "calendario__dia": 31,
+            "edicion__cerrar": 1
+          },
+          "sinEtiqueta": 0
+        }
+      ]
+    },
+    {
+      "perfil": "P7 · Cambio de vista",
+      "tarea": "Pasar de la vista de cliente a la de administración y volver, solo con la interfaz",
+      "viewport": "1280px",
+      "completada": true,
+      "fallo": null,
+      "clics": 0,
+      "camposEscritos": 0,
+      "pantallas": 2,
+      "notas": [
+        "Desde la vista de cliente hay un enlace visible hacia administración = true",
+        "Desde administración hay un enlace visible hacia la vista de cliente = true"
+      ],
+      "errorConsola": 0,
+      "auditorias": [
+        {
+          "pantalla": "Cliente",
+          "desborde": false,
+          "h1": 1,
+          "interactivos": 6,
+          "menorQue44": 3,
+          "menorQue24": 2,
+          "clasesPequenas": {
+            "logo": 1,
+            "encabezado__ayuda": 1,
+            "pie__enlace": 1
+          },
+          "sinEtiqueta": 0
+        },
+        {
+          "pantalla": "Admin",
+          "desborde": false,
+          "h1": 1,
+          "interactivos": 49,
+          "menorQue44": 41,
+          "menorQue24": 6,
+          "clasesPequenas": {
+            "logo": 1,
+            "encabezado__ayuda": 1,
+            "nav-lateral__reiniciar": 1,
+            "calendario__nav": 2,
+            "calendario__dia": 31,
+            "accion": 4,
+            "enlace-volver": 1
+          },
+          "sinEtiqueta": 0
+        }
+      ]
+    },
+    {
+      "perfil": "P8 · Administrador en móvil",
+      "tarea": "Recorrer las cuatro pantallas de administración en 390 px",
+      "viewport": "390px",
+      "completada": true,
+      "fallo": null,
+      "clics": 0,
+      "camposEscritos": 0,
+      "pantallas": 4,
+      "notas": [],
+      "errorConsola": 0,
+      "auditorias": [
+        {
+          "pantalla": "A01 panel móvil",
+          "desborde": false,
+          "h1": 1,
+          "interactivos": 47,
+          "menorQue44": 1,
+          "menorQue24": 0,
+          "clasesPequenas": {
+            "logo": 1
+          },
+          "sinEtiqueta": 0
+        },
+        {
+          "pantalla": "A02 calendario móvil",
+          "desborde": false,
+          "h1": 1,
+          "interactivos": 50,
+          "menorQue44": 1,
+          "menorQue24": 0,
+          "clasesPequenas": {
+            "logo": 1
+          },
+          "sinEtiqueta": 0
+        },
+        {
+          "pantalla": "A03 nueva móvil",
+          "desborde": false,
+          "h1": 1,
+          "interactivos": 51,
+          "menorQue44": 1,
+          "menorQue24": 0,
+          "clasesPequenas": {
+            "logo": 1
+          },
+          "sinEtiqueta": 0
+        },
+        {
+          "pantalla": "A04 editar móvil",
+          "desborde": false,
+          "h1": 1,
+          "interactivos": 50,
+          "menorQue44": 1,
+          "menorQue24": 0,
+          "clasesPequenas": {
+            "logo": 1
+          },
+          "sinEtiqueta": 0
+        }
+      ]
+    },
+    {
+      "perfil": "P10 · Coherencia cliente-administración",
+      "tarea": "Reservar como cliente y comprobar que el administrador la ve de inmediato",
+      "viewport": "1280px",
+      "completada": true,
+      "fallo": null,
+      "clics": 6,
+      "camposEscritos": 3,
+      "pantallas": 7,
+      "notas": [
+        "Ancho del calendario en el paso Fecha: 784 px (viewport 1280 px)",
+        "Aviso de franja agotada visible a la primera",
+        "Reserva SM-3044 hecha como cliente: el panel muestra 26 reservas del día (antes 25) y la fila en la tabla = true"
+      ],
+      "errorConsola": 0,
+      "auditorias": [
+        {
+          "pantalla": "C01 inicio",
+          "desborde": false,
+          "h1": 1,
+          "interactivos": 6,
+          "menorQue44": 3,
+          "menorQue24": 2,
+          "clasesPequenas": {
+            "logo": 1,
+            "encabezado__ayuda": 1,
+            "pie__enlace": 1
+          },
+          "sinEtiqueta": 0
+        },
+        {
+          "pantalla": "C02 fecha y hora",
+          "desborde": false,
+          "h1": 1,
+          "interactivos": 42,
+          "menorQue44": 36,
+          "menorQue24": 2,
+          "clasesPequenas": {
+            "logo": 1,
+            "encabezado__ayuda": 1,
+            "calendario__nav": 2,
+            "calendario__dia": 31,
+            "pie__enlace": 1
+          },
+          "sinEtiqueta": 0
+        },
+        {
+          "pantalla": "C03 alternativas",
+          "desborde": false,
+          "h1": 1,
+          "interactivos": 8,
+          "menorQue44": 3,
+          "menorQue24": 2,
+          "clasesPequenas": {
+            "logo": 1,
+            "encabezado__ayuda": 1,
+            "pie__enlace": 1
+          },
+          "sinEtiqueta": 0
+        },
+        {
+          "pantalla": "C04 personas",
+          "desborde": false,
+          "h1": 1,
+          "interactivos": 7,
+          "menorQue44": 3,
+          "menorQue24": 2,
+          "clasesPequenas": {
+            "logo": 1,
+            "encabezado__ayuda": 1,
+            "pie__enlace": 1
+          },
+          "sinEtiqueta": 0
+        },
+        {
+          "pantalla": "C05 datos",
+          "desborde": false,
+          "h1": 1,
+          "interactivos": 9,
+          "menorQue44": 3,
+          "menorQue24": 2,
+          "clasesPequenas": {
+            "logo": 1,
+            "encabezado__ayuda": 1,
+            "pie__enlace": 1
+          },
+          "sinEtiqueta": 0
+        },
+        {
+          "pantalla": "C06 resumen",
+          "desborde": false,
+          "h1": 1,
+          "interactivos": 7,
+          "menorQue44": 6,
+          "menorQue24": 5,
+          "clasesPequenas": {
+            "logo": 1,
+            "encabezado__ayuda": 1,
+            "btn": 3,
+            "pie__enlace": 1
+          },
+          "sinEtiqueta": 0
+        },
+        {
+          "pantalla": "C07 confirmación",
+          "desborde": false,
+          "h1": 1,
+          "interactivos": 6,
+          "menorQue44": 4,
+          "menorQue24": 3,
+          "clasesPequenas": {
+            "logo": 1,
+            "encabezado__ayuda": 1,
+            "btn": 1,
+            "pie__enlace": 1
+          },
+          "sinEtiqueta": 0
+        }
+      ]
+    },
+    {
+      "perfil": "P9 · Usuario de teclado",
+      "tarea": "Llegar a \"Reservar Mesa\" y activarlo solo con Tab y Enter",
+      "viewport": "1280px",
+      "completada": true,
+      "fallo": null,
+      "clics": 1,
+      "camposEscritos": 0,
+      "pantallas": 0,
+      "notas": [
+        "Con teclado se llega a \"Reservar Mesa\" en 5 pulsaciones de Tab",
+        "Elementos enfocados sin indicador de foco visible: ninguno"
+      ],
+      "errorConsola": 0,
+      "auditorias": []
+    }
+  ],
+  "contraste": {
+    "Texto secundario sobre fondo crema (#6a6e62 / #f3f0e8)": 4.59,
+    "Texto secundario sobre tarjeta (#6a6e62 / #fffefa)": 5.18,
+    "Botón deshabilitado (#7a7f72 / #e1e3db)": 3.17,
+    "Error rojo sobre fondo de aviso (#a54c37 / #f8ece5)": 4.91,
+    "Verde sobre fondo de aviso (#394c32 / #eaf0e3)": 8.02,
+    "Texto blanco sobre botón verde (#ffffff / #394c32)": 9.32
+  }
+}

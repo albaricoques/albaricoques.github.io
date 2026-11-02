@@ -1,5 +1,6 @@
 import Icono from '../ui/Icono.jsx'
 import EtiquetaEstado from '../ui/EtiquetaEstado.jsx'
+import { nombreMesa } from '../../utils/disponibilidad.js'
 
 const hrefEditar = (r) => `#/admin/editar/${r.codigo}`
 
@@ -24,7 +25,7 @@ export default function TablaReservas({ reservas, destacada }) {
                 <td className="tabla__hora">{r.hora}</td>
                 <td><span className="tabla__cliente">{r.cliente}</span><span className="tabla__codigo">{r.codigo}</span></td>
                 <td>{r.personas}</td>
-                <td>{r.mesa}</td>
+                <td>{nombreMesa(r.mesa)}</td>
                 <td className="celda-estado"><EtiquetaEstado estado={r.estado} /></td>
                 <td className="celda-accion">
                   <a className="accion" href={hrefEditar(r)}>Ver / Editar <Icono nombre="externo" tamano={11} grosor={2} /></a>
@@ -45,7 +46,7 @@ export default function TablaReservas({ reservas, destacada }) {
               <p className="tarjeta-reserva__cliente">{r.cliente}</p>
               <p className="tarjeta-reserva__codigo">{r.codigo}</p>
             </div>
-            <p className="tarjeta-reserva__datos">{r.personas} personas · Mesa {r.mesa}</p>
+            <p className="tarjeta-reserva__datos">{r.personas} personas · Mesa {nombreMesa(r.mesa)}</p>
             <a className="btn btn--enlace tarjeta-reserva__accion" href={hrefEditar(r)}>Ver / Editar reserva →</a>
           </li>
         ))}

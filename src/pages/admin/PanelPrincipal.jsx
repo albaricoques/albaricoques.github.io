@@ -8,7 +8,7 @@ import Agenda from '../../components/reservas/Agenda.jsx'
 import TablaReservas from '../../components/reservas/TablaReservas.jsx'
 import { useReservas } from '../../hooks/useReservas.jsx'
 import { FECHA_DEMO } from '../../data/seed.js'
-import { estadisticasDia } from '../../utils/disponibilidad.js'
+import { estadisticasDia, nombreMesa } from '../../utils/disponibilidad.js'
 import { contarSobrecupos, mesasLibresProximoTurno, proximaLlegada } from '../../utils/agenda.js'
 
 export default function PanelPrincipal() {
@@ -51,7 +51,7 @@ export default function PanelPrincipal() {
       ) : (
         <Aviso tipo="exito" titulo="Resumen operativo · Sin sobrecupos">
           {proxima
-            ? `Próxima llegada: ${proxima.cliente} · ${proxima.hora} · ${proxima.personas} personas · ${proxima.mesa}. Quedan ${mesasLibresProximoTurno(reservas, fecha, proxima.hora)} mesas libres para el próximo turno.`
+            ? `Próxima llegada: ${proxima.cliente} · ${proxima.hora} · ${proxima.personas} personas · ${nombreMesa(proxima.mesa)}. Quedan ${mesasLibresProximoTurno(reservas, fecha, proxima.hora)} mesas libres para el próximo turno.`
             : 'No hay llegadas pendientes en este turno.'}
         </Aviso>
       )}

@@ -9,12 +9,13 @@ import Calendario from '../../components/reservas/Calendario.jsx'
 import Agenda from '../../components/reservas/Agenda.jsx'
 import { useReservas } from '../../hooks/useReservas.jsx'
 import useDisponibilidadReserva from '../../hooks/useDisponibilidadReserva.js'
-import { HORAS_SERVICIO, MESAS, RESTAURANTE } from '../../data/seed.js'
+import { HORAS_SERVICIO, RESTAURANTE } from '../../data/seed.js'
+import { MESAS_RESERVABLES, nombreMesa } from '../../utils/disponibilidad.js'
 import { diasDelMes, fechaMedia, fechaLarga, fechaSimple } from '../../utils/fechas.js'
 
 const OPCIONES_FECHA = diasDelMes(2026, 9).map((d) => ({ valor: d, texto: fechaMedia(d) }))
 const OPCIONES_HORA = HORAS_SERVICIO.map((h) => ({ valor: h, texto: `${h} h` }))
-const OPCIONES_MESA = MESAS.map((m) => ({ valor: m.id, texto: `${m.id} · ${m.capacidad} plazas` }))
+const OPCIONES_MESA = MESAS_RESERVABLES.map((m) => ({ valor: m.id, texto: `${nombreMesa(m.id)} · ${m.capacidad} plazas` }))
 
 export default function EditarCancelar({ codigo }) {
   const { reservas } = useReservas()
@@ -74,6 +75,18 @@ function Editor({ reservaInicial }) {
       titulo="Modificar o cancelar"
       descripcion={`Reserva ${actual.codigo} · ${actual.cliente}. Consulta la agenda mientras editas los datos de la reserva.`}
     >
+      <Campo
+        tipo="select"
+        etiqueta="Reserva a editar"
+        className="editar__selector"
+        value={actual.codigo}
+        onChange={(e) => { window.location.hash = `/admin/editar/${e.target.value}` }}
+        opciones={[...reservas].sort((a, b) => a.fecha.localeCompare(b.fecha) || a.hora.localeCompare(b.hora)).map((r) => ({
+          valor: r.codigo,
+          texto: `${r.codigo} · ${r.cliente} · ${fechaMedia(r.fecha).split(' ').slice(1).join(' ')} ${r.hora}${r.estado === 'cancelada' ? ' · Cancelada' : ''}`,
+        }))}
+      />
+
       <div className="editar">
         <aside className="editar__lateral" aria-label="Agenda y calendario">
           <Agenda sombra fecha={form.fecha} reservas={reservas} bloqueos={bloqueos} />
@@ -109,13 +122,13 @@ function Editor({ reservaInicial }) {
             {!cancelada && (v.conflicto ? (
               <Aviso tipo="error" titulo="Conflicto de disponibilidad">
                 {v.ocupada
-                  ? `${form.mesa} ya está asignada a las ${form.hora}. Guardar está bloqueado para evitar una doble reserva.`
-                  : `${form.mesa} no tiene capacidad para ${form.personas} personas.`}
-                {v.alternativa ? ` Alternativa: ${v.alternativa.hora} · ${v.alternativa.mesa}.` : ''}
+                  ? `${nombreMesa(form.mesa)} ya está asignada a las ${form.hora}. Guardar está bloqueado para evitar una doble reserva.`
+                  : `${nombreMesa(form.mesa)} no tiene capacidad para ${form.personas} personas.`}
+                {v.alternativa ? ` Alternativa: ${v.alternativa.hora} · ${nombreMesa(v.alternativa.mesa)}.` : ''}
               </Aviso>
             ) : (
               <Aviso tipo="exito" titulo="Disponible · Sin conflictos">
-                {fechaMedia(form.fecha).split(' ').slice(1, 3).join(' ')} · {form.hora} · {form.personas} personas · {form.mesa}. Validada sin contar dos veces esta reserva. Guardar se bloquea si hay conflicto.
+                {fechaMedia(form.fecha).split(' ').slice(1, 3).join(' ')} · {form.hora} · {form.personas} personas · {nombreMesa(form.mesa)}. Validada sin contar dos veces esta reserva. Guardar se bloquea si hay conflicto.
               </Aviso>
             ))}
 
@@ -130,7 +143,7 @@ function Editor({ reservaInicial }) {
               ) : (
                 <>
                   <p className="cancelacion__pregunta">¿Cancelar {actual.codigo}?</p>
-                  <p>Se liberarán {actual.personas} plazas de {actual.mesa} a las {actual.hora}. El cupo no se libera hasta confirmar.</p>
+                  <p>Se liberarán {actual.personas} plazas de {nombreMesa(actual.mesa)} a las {actual.hora}. El cupo no se libera hasta confirmar.</p>
                   <p className="cancelacion__pie">Se comprueba que la reserva siga activa para evitar una doble cancelación.</p>
                   <Boton variante="peligro" bloque onClick={confirmarCancelacion}>Sí, cancelar reserva</Boton>
                   <Boton bloque onClick={() => setConfirmando(false)}>No, mantener reserva</Boton>
@@ -155,7 +168,7 @@ function Editor({ reservaInicial }) {
           )}
           <p className="estado-posterior__dato">{fechaLarga(actual.fecha).replace(/^./, (c) => c.toUpperCase())}</p>
           <p className="estado-posterior__linea">
-            {actual.hora} · {actual.mesa} · {resultado === 'guardado' ? `${actual.cliente.split(' ')[0]} · ${actual.personas} personas` : `Libre · ${actual.personas} plazas`}
+            {actual.hora} · {nombreMesa(actual.mesa)} · {resultado === 'guardado' ? `${actual.cliente.split(' ')[0]} · ${actual.personas} personas` : `Libre · ${actual.personas} plazas`}
           </p>
           <div><EtiquetaEstado estado={actual.estado}>{actual.codigo} · {actual.estado === 'cancelada' ? 'Cancelada' : 'Confirmada'}</EtiquetaEstado></div>
           <a className="enlace-volver" href="#/admin/reservas">← Volver a las reservas</a>

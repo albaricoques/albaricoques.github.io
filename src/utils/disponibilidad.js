@@ -1,20 +1,30 @@
-import { MESAS, HORAS_SERVICIO, BASE_DIA, CUPO_ONLINE_BASE, CUPO_ONLINE_DEFECTO, FECHA_DEMO } from '../data/seed.js'
+import { MESAS, COMBINACIONES, HORAS_SERVICIO, BASE_DIA, CUPO_ONLINE_BASE, CUPO_ONLINE_DEFECTO, FECHA_DEMO } from '../data/seed.js'
 
 const activa = (r) => r.estado !== 'cancelada'
 
-export const capacidadMesa = (id) => MESAS.find((m) => m.id === id)?.capacidad ?? 0
+/** Una "mesa" puede ser una sola (M04) o dos unidas (M04+M05) */
+export const partes = (mesa) => mesa.split('+')
+export const capacidadMesa = (id) => partes(id).reduce((suma, p) => suma + (MESAS.find((m) => m.id === p)?.capacidad ?? 0), 0)
+export const nombreMesa = (id) => id.replace('+', ' + ')
+const chocan = (a, b) => partes(a).some((p) => partes(b).includes(p))
+
+/** Mesas reservables: las individuales y las combinaciones de dos */
+export const MESAS_RESERVABLES = [
+  ...MESAS.map((m) => ({ id: m.id, capacidad: m.capacidad })),
+  ...COMBINACIONES.map((c) => ({ id: c.join('+'), capacidad: capacidadMesa(c.join('+')) })),
+]
 
 /** ¿La mesa está ocupada a esa fecha y hora? `ignorar` evita contar dos veces la reserva que se edita. */
 export function mesaOcupada({ reservas, bloqueos = [], fecha, hora, mesa, ignorar }) {
   const porReserva = reservas.some(
-    (r) => activa(r) && r.codigo !== ignorar && r.fecha === fecha && r.hora === hora && r.mesa === mesa,
+    (r) => activa(r) && r.codigo !== ignorar && r.fecha === fecha && r.hora === hora && chocan(r.mesa, mesa),
   )
-  const porBloqueo = bloqueos.some((b) => b.fecha === fecha && b.hora === hora && b.mesa === mesa)
+  const porBloqueo = bloqueos.some((b) => b.fecha === fecha && b.hora === hora && chocan(b.mesa, mesa))
   return porReserva || porBloqueo
 }
 
 export function mesasLibres({ reservas, bloqueos, fecha, hora, personas = 1, ignorar }) {
-  return MESAS.filter(
+  return MESAS_RESERVABLES.filter(
     (m) => m.capacidad >= personas && !mesaOcupada({ reservas, bloqueos, fecha, hora, mesa: m.id, ignorar }),
   )
 }
@@ -53,7 +63,7 @@ export function estadisticasDia(reservas, fecha) {
   const canceladas = deldia.length - activas.length
   const esDemo = fecha === FECHA_DEMO
   const base = esDemo ? BASE_DIA : { activas: 0, canceladas: 0, mesasOcupadas: 0, personas: 0 }
-  const mesasUsadas = new Set(activas.map((r) => r.mesa)).size
+  const mesasUsadas = new Set(activas.flatMap((r) => partes(r.mesa))).size
   const personas = activas.reduce((s, r) => s + r.personas, 0) + base.personas
   const plazas = MESAS.reduce((s, m) => s + m.capacidad, 0)
   return {

@@ -1,6 +1,7 @@
 import { useMemo } from 'react'
 import { construirAgenda } from '../../utils/agenda.js'
 import { diaMes } from '../../utils/fechas.js'
+import { nombreMesa } from '../../utils/disponibilidad.js'
 
 /** Agenda del día: reservas, mesas ocupadas / sin cupo y mesas libres */
 export default function Agenda({ titulo, fecha, reservas, bloqueos, sombra = false }) {
@@ -16,7 +17,7 @@ export default function Agenda({ titulo, fecha, reservas, bloqueos, sombra = fal
             <li key={i.id} className={`agenda__fila ${i.conflicto ? 'agenda__fila--conflicto' : ''}`.trim()}>
               <span className="agenda__hora">{i.hora}</span>
               <div>
-                <p className="agenda__mesa">{i.mesa}</p>
+                <p className="agenda__mesa">{nombreMesa(i.mesa)}</p>
                 <p className="agenda__detalle">{i.detalle}</p>
               </div>
             </li>

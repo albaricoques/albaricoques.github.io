@@ -2,7 +2,7 @@ import { describe, it, expect } from 'vitest'
 import { RESERVAS_INICIALES, BLOQUEOS_INICIALES, FECHA_DEMO } from '../data/seed.js'
 import {
   mesaOcupada, buscarAlternativa, estadisticasDia, siguienteCodigo,
-  validarTelefono, validarCorreo, cupoOnline, asignarMesa,
+  validarTelefono, validarCorreo, cupoOnline, asignarMesa, capacidadMesa, nombreMesa,
 } from './disponibilidad.js'
 import { matrizMes, fechaLarga } from './fechas.js'
 
@@ -53,6 +53,24 @@ describe('cupo online y asignación', () => {
   })
   it('genera el siguiente código', () => {
     expect(siguienteCodigo(RESERVAS_INICIALES)).toBe('SM-3044')
+  })
+})
+
+describe('grupos de 5 a 8 personas (mesas unidas)', () => {
+  it('dos mesas contiguas suman su capacidad', () => {
+    expect(capacidadMesa('M04+M05')).toBe(8)
+    expect(nombreMesa('M04+M05')).toBe('M04 + M05')
+  })
+  it('un grupo de 8 recibe un par de mesas libre', () => {
+    expect(asignarMesa({ ...ctx, hora: '20:30', personas: 8 })).toBe('M06+M07')
+  })
+  it('un par choca con cualquiera de sus mesas ocupadas', () => {
+    expect(mesaOcupada({ ...ctx, hora: '20:30', mesa: 'M04+M05' })).toBe(true)
+    expect(mesaOcupada({ ...ctx, hora: '21:00', mesa: 'M06+M07' })).toBe(true)
+    expect(mesaOcupada({ ...ctx, hora: '21:00', mesa: 'M08+M09' })).toBe(false)
+  })
+  it('un grupo de 5 usa un par y no cabe en una mesa sola', () => {
+    expect(asignarMesa({ ...ctx, hora: '19:30', personas: 5 })).toBe('M04+M05')
   })
 })
 

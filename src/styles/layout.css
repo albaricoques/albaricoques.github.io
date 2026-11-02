@@ -87,3 +87,12 @@
   .stepper__paso { font-size: 11px; }
   .pie { padding: 20px; flex-direction: column; gap: 6px; }
 }
+
+/* Enlaces entre las vistas de cliente y administración */
+.encabezado__grupo { display: flex; align-items: center; gap: 20px; }
+.pie__enlace { color: var(--verde); font-weight: 500; text-decoration: none; }
+.pie__enlace:hover { text-decoration: underline; }
+@media (max-width: 860px) {
+  .encabezado__grupo { gap: 12px; }
+  .encabezado__ayuda { min-height: 44px; }
+}

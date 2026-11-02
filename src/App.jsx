@@ -12,5 +12,5 @@ export default function App() {
   if (ruta === '/admin/reservas') return <ConsultarReservas />
   if (ruta === '/admin/nueva') return <NuevaReserva />
   if (ruta.startsWith('/admin/editar')) return <EditarCancelar codigo={ruta.split('/')[3]} />
-  return <FlujoReserva />
+  return <FlujoReserva ruta={ruta} />
 }

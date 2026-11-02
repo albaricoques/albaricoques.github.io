@@ -10,12 +10,13 @@ import Calendario from '../../components/reservas/Calendario.jsx'
 import Agenda from '../../components/reservas/Agenda.jsx'
 import { useReservas } from '../../hooks/useReservas.jsx'
 import useDisponibilidadReserva from '../../hooks/useDisponibilidadReserva.js'
-import { FECHA_DEMO, HORAS_SERVICIO, MESAS, RESTAURANTE } from '../../data/seed.js'
+import { FECHA_DEMO, HORAS_SERVICIO, RESTAURANTE } from '../../data/seed.js'
+import { MESAS_RESERVABLES, capacidadMesa, nombreMesa } from '../../utils/disponibilidad.js'
 import { diasDelMes, fechaLarga } from '../../utils/fechas.js'
 
 const OPCIONES_FECHA = diasDelMes(2026, 9).map((d) => ({ valor: d, texto: fechaLarga(d).replace(/^./, (c) => c.toUpperCase()) }))
 const OPCIONES_HORA = HORAS_SERVICIO.map((h) => ({ valor: h, texto: `${h} h` }))
-const OPCIONES_MESA = MESAS.map((m) => ({ valor: m.id, texto: `${m.id} · Capacidad ${m.capacidad}` }))
+const OPCIONES_MESA = MESAS_RESERVABLES.map((m) => ({ valor: m.id, texto: `${nombreMesa(m.id)} · Capacidad ${m.capacidad}` }))
 
 const INICIAL = {
   canal: 'telefono', fecha: FECHA_DEMO, hora: '20:00', personas: 4, mesa: 'M04',
@@ -32,6 +33,7 @@ export default function NuevaReserva() {
   const poner = (campo) => (e) => setForm((f) => ({ ...f, [campo]: e.target.value }))
   const tocar = (campo) => () => setTocados((t) => ({ ...t, [campo]: true }))
   const errorDe = (campo) => (tocados[campo] ? v.errores[campo] : null)
+  const faltan = [v.errores.nombre && 'nombre', v.errores.telefono && 'teléfono con prefijo y 9 cifras', v.errores.correo && 'correo válido'].filter(Boolean)
 
   const aplicarAlternativa = () => setForm((f) => ({ ...f, hora: v.alternativa.hora, mesa: v.alternativa.mesa }))
   const cambiarPersonas = (e) => {
@@ -49,8 +51,8 @@ export default function NuevaReserva() {
   const nueva = () => { setForm(INICIAL); setTocados({}); setCreada(null) }
 
   const mensajeConflicto = v.ocupada
-    ? `${form.mesa} ya está asignada a las ${form.hora}. Guardar está bloqueado para evitar una doble reserva.`
-    : `${form.mesa} tiene capacidad para ${MESAS.find((m) => m.id === form.mesa).capacidad} personas y la reserva es para ${form.personas}.`
+    ? `${nombreMesa(form.mesa)} ya está asignada a las ${form.hora}. Guardar está bloqueado para evitar una doble reserva.`
+    : `${nombreMesa(form.mesa)} tiene capacidad para ${capacidadMesa(form.mesa)} personas y la reserva es para ${form.personas}.`
 
   return (
     <LayoutAdmin
@@ -64,7 +66,7 @@ export default function NuevaReserva() {
           {creada ? (
             <div className="formulario">
               <Aviso tipo="exito" titulo={`Reserva ${creada.codigo} creada`}>
-                {creada.cliente} · {creada.hora} · {creada.personas} personas · {creada.mesa}. La agenda se ha actualizado.
+                {creada.cliente} · {creada.hora} · {creada.personas} personas · {nombreMesa(creada.mesa)}. La agenda se ha actualizado.
               </Aviso>
               <div className="formulario__acciones">
                 <Boton variante="primario" bloque href="#/admin/reservas">Ver en el calendario</Boton>
@@ -102,7 +104,7 @@ export default function NuevaReserva() {
 
               {v.conflicto && v.alternativa && (
                 <div className="formulario__alternativa">
-                  <span>{v.alternativa.hora} · {v.alternativa.mesa} · {v.alternativa.plazas} plazas libres</span>
+                  <span>{v.alternativa.hora} · {nombreMesa(v.alternativa.mesa)} · {v.alternativa.plazas} plazas libres</span>
                   <Boton bloque onClick={aplicarAlternativa}>Usar alternativa de las {v.alternativa.hora}</Boton>
                   <small>Pendiente de aplicar. Se volverá a validar antes de habilitar Guardar.</small>
                 </div>
@@ -110,7 +112,7 @@ export default function NuevaReserva() {
 
               {!v.conflicto && (
                 <Aviso tipo="exito" titulo="Disponible · Sin conflictos">
-                  {form.hora} · {form.mesa} · {form.personas} personas. Validada contra la agenda del día.
+                  {form.hora} · {nombreMesa(form.mesa)} · {form.personas} personas. Validada contra la agenda del día.
                 </Aviso>
               )}
 
@@ -123,6 +125,9 @@ export default function NuevaReserva() {
                 <Boton tipo="submit" variante="primario" bloque disabled={!v.puedeGuardar}>
                   {v.conflicto ? 'Guardar reserva · Bloqueado' : 'Guardar reserva'}
                 </Boton>
+                {!v.conflicto && faltan.length > 0 && (
+                  <p className="formulario__motivo" role="status">Falta completar: {faltan.join(', ')}.</p>
+                )}
                 <Boton bloque href="#/admin">Volver al panel</Boton>
               </div>
             </form>
