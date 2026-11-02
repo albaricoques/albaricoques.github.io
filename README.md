@@ -117,5 +117,4 @@ node pruebas/usabilidad.js 3            # genera ronda-3.json
 
 ## Notas
 
-- La fotografía del restaurante no se pudo extraer de Figma. Copia `restaurante.jpg` en `public/img/` (ver `LEEME.txt`) y se mostrará sola.
 - Los valores de las reservas de demo reproducen los indicadores del diseño (25 reservas, 8/12 mesas, 28 personas, 12 plazas libres).
